@@ -1,0 +1,5 @@
+# Remove Blur Online - robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://removebluronline.com/sitemap.xml
