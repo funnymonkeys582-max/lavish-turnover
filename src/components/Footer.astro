@@ -1,0 +1,97 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="mt-auto border-t border-[#ebebeb] bg-[#fafafa] text-[#4d4d4d] text-[13px]">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+      <!-- Col 1: Brand Info -->
+      <div class="md:col-span-1 space-y-3">
+        <a href="/" class="flex items-center gap-2 text-[#171717] font-semibold text-[15px] tracking-tight">
+          <div class="w-6 h-6 rounded-[5px] bg-[#171717] flex items-center justify-center text-white">
+            <svg class="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4h4M16 4h4v4M4 16v4h4M16 20h4v-4" />
+              <circle cx="12" cy="12" r="3" fill="#0070f3" stroke="none"/>
+            </svg>
+          </div>
+          <span>RemoveBlur<span class="text-[#0070f3]">Online</span></span>
+        </a>
+        <p class="text-[13px] text-[#8f8f8f] leading-relaxed">
+          The 100% free, single-purpose photo unblurrer. Zero cloud uploads, zero watermarks, and zero paywalls.
+        </p>
+        <div class="flex items-center gap-1.5 text-xs text-emerald-600 font-mono">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          All systems operational
+        </div>
+      </div>
+
+      <!-- Col 2: Features -->
+      <div>
+        <h4 class="font-mono text-xs uppercase font-semibold text-[#171717] tracking-wider mb-3">
+          Capabilities
+        </h4>
+        <ul class="space-y-2 text-[#4d4d4d]">
+          <li><a href="#unblur-tool" class="hover:text-[#171717] transition-colors">Instant Photo Deblur</a></li>
+          <li><a href="#unblur-tool" class="hover:text-[#171717] transition-colors">Portrait & Face Detail</a></li>
+          <li><a href="#unblur-tool" class="hover:text-[#171717] transition-colors">Document & Invoice Sharpener</a></li>
+          <li><a href="#unblur-tool" class="hover:text-[#171717] transition-colors">Motion Shake Recovery</a></li>
+          <li><a href="#unblur-tool" class="hover:text-[#171717] transition-colors">Interactive Split Slider</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Values -->
+      <div>
+        <h4 class="font-mono text-xs uppercase font-semibold text-[#171717] tracking-wider mb-3">
+          Our Values
+        </h4>
+        <ul class="space-y-2 text-[#4d4d4d]">
+          <li><a href="#unblur-tool" class="hover:text-[#171717] transition-colors">Why 100% Free?</a></li>
+          <li><a href="#unblur-tool" class="hover:text-[#171717] transition-colors">Zero Watermark Policy</a></li>
+          <li><a href="#technology" class="hover:text-[#171717] transition-colors">Authentic Edge Recovery</a></li>
+          <li><a href="#faq" class="hover:text-[#171717] transition-colors">Client-Side Privacy</a></li>
+          <li><a href="#guide" class="hover:text-[#171717] transition-colors">Complete Unblur Guide</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Legal -->
+      <div>
+        <h4 class="font-mono text-xs uppercase font-semibold text-[#171717] tracking-wider mb-3">
+          Legal
+        </h4>
+        <ul class="space-y-2 text-[#4d4d4d]">
+          <li><a href="/privacy-policy" class="hover:text-[#171717] transition-colors">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions" class="hover:text-[#171717] transition-colors">Terms and Conditions</a></li>
+          <li><a href="/about-us" class="hover:text-[#171717] transition-colors">About Us</a></li>
+          <li><a href="/contact-us" class="hover:text-[#171717] transition-colors">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Trust & Privacy -->
+      <div>
+        <h4 class="font-mono text-xs uppercase font-semibold text-[#171717] tracking-wider mb-3">
+          Privacy Guarantee
+        </h4>
+        <p class="text-[12px] text-[#8f8f8f] leading-relaxed mb-3">
+          Your photos stay on your device. We use in-browser Canvas technology to process pixels locally. No photos are transmitted, stored, or reviewed by anyone.
+        </p>
+        <div class="px-2.5 py-1.5 rounded-[6px] border border-[#ebebeb] bg-white font-mono text-[11px] text-[#4d4d4d]">
+          🔒 Client-Side Execution Only
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Hairline & Copyright -->
+    <div class="pt-6 border-t border-[#ebebeb] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#8f8f8f]">
+      <div>
+        © {currentYear} Remove Blur Online (removebluronline.com). All rights reserved.
+      </div>
+      <div class="flex items-center gap-4">
+        <span>No Cookies Required</span>
+        <span>•</span>
+        <span>Free & Open Web</span>
+        <span>•</span>
+        <span>Fast Astro Engine</span>
+      </div>
+    </div>
+  </div>
+</footer>

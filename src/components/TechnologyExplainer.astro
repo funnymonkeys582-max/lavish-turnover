@@ -1,0 +1,95 @@
+---
+---
+
+<section id="technology" class="relative max-w-[1200px] mx-auto px-4 sm:px-6 py-12 md:py-16 border-t border-[#ebebeb]">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+    <!-- Left Column: Explanation -->
+    <div class="lg:col-span-7 space-y-4">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#ebebeb] bg-white text-[12px] font-mono uppercase tracking-wider text-[#8f8f8f] shadow-whisper">
+        Under The Hood
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#171717] tracking-[-0.03em] leading-tight">
+        Real Optical Restoration.<br />
+        No AI Hallucinations.
+      </h2>
+
+      <p class="text-[15px] text-[#4d4d4d] leading-relaxed">
+        Many modern AI unblur tools rely on generative models that frequently fabricate synthetic details—turning text into alien hieroglyphics or morphing facial expressions. Remove Blur Online takes an engineered mathematical approach:
+      </p>
+
+      <div class="space-y-3 pt-2">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-[4px] bg-[#0070f3]/10 text-[#0070f3] flex items-center justify-center font-mono text-xs font-bold shrink-0 mt-0.5">
+            01
+          </div>
+          <div>
+            <h4 class="text-[14px] font-semibold text-[#171717]">Luminance Channel Separation</h4>
+            <p class="text-[13px] text-[#4d4d4d]">
+              We convert RGB to perceived luminance (Y) before edge extraction. Sharpening brightness deltas prevents chromatic aberration and preserves true photo color balance.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-[4px] bg-[#7928ca]/10 text-[#7928ca] flex items-center justify-center font-mono text-xs font-bold shrink-0 mt-0.5">
+            02
+          </div>
+          <div>
+            <h4 class="text-[14px] font-semibold text-[#171717]">Contrast Adaptive Sharpening (CAS)</h4>
+            <p class="text-[13px] text-[#4d4d4d]">
+              Analyzes local 3×3 pixel neighborhoods to dynamically compute peak limiters. This eliminates the white ringing halos common in basic sharpen filters.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-[4px] bg-emerald-500/10 text-emerald-600 flex items-center justify-center font-mono text-xs font-bold shrink-0 mt-0.5">
+            03
+          </div>
+          <div>
+            <h4 class="text-[14px] font-semibold text-[#171717]">Noise Coring & Grain Suppression</h4>
+            <p class="text-[13px] text-[#4d4d4d]">
+              Low-amplitude high-frequency noise is isolated through soft thresholding so sensor grain isn't magnified while authentic contours are brought into focus.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Code block styled per DESIGN.md -->
+    <div class="lg:col-span-5">
+      <div class="border border-[#ebebeb] bg-white rounded-xl shadow-whisper overflow-hidden">
+        <div class="px-4 py-2.5 border-b border-[#ebebeb] bg-[#fafafa] flex items-center justify-between text-xs font-mono text-[#8f8f8f]">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#ebebeb]"></span>
+            <span>deblur-algorithm.ts</span>
+          </div>
+          <span class="text-[#0070f3] font-medium">O(N) Separable</span>
+        </div>
+
+        <pre class="p-4 text-[12px] font-mono leading-relaxed overflow-x-auto text-[#171717] bg-[#ffffff]"><code><span class="text-[#8f8f8f]">// 1. Compute ITU-R BT.601 Luminance</span>
+<span class="text-[#0070f3]">const</span> lum = 0.299*r + 0.587*g + 0.114*b;
+<span class="text-[#0070f3]">const</span> diff = lum - blurredLum;
+
+<span class="text-[#8f8f8f]">// 2. Dynamic Noise Coring Threshold</span>
+<span class="text-[#0070f3]">if</span> (Math.abs(diff) &gt; threshold) &#123;
+  <span class="text-[#0070f3]">const</span> ramp = Math.min(1, 
+    (Math.abs(diff) - threshold) / (threshold * 1.5 + 1)
+  );
+  sharpDiff = diff * amount * ramp;
+&#125;
+
+<span class="text-[#8f8f8f]">// 3. Anti-Ringing Adaptive Clamping</span>
+<span class="text-[#0070f3]">const</span> minLocal = Math.min(N, S, E, W, C);
+<span class="text-[#0070f3]">const</span> maxLocal = Math.max(N, S, E, W, C);
+pixelOut = Math.max(minLocal, Math.min(maxLocal, pixelIn + sharpDiff));</code></pre>
+
+        <div class="px-4 py-3 border-t border-[#ebebeb] bg-[#fafafa] flex items-center justify-between text-xs text-[#4d4d4d]">
+          <span class="font-mono text-[#8f8f8f]">Execution:</span>
+          <span class="font-semibold text-emerald-600">Local Hardware Accelerated</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

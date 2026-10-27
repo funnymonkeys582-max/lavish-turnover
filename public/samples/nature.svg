@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="60%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#fdba74"/>
+    </linearGradient>
+    <filter id="motionBlur" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="3.2, 0.8" />
+    </filter>
+    <linearGradient id="road" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="600" fill="url(#skyGrad)"/>
+
+  <!-- City & Architecture with slight motion/shake blur -->
+  <g filter="url(#motionBlur)">
+    <!-- Sun -->
+    <circle cx="640" cy="220" r="45" fill="#fef08a" opacity="0.9"/>
+    
+    <!-- Distant Mountain silhouette -->
+    <polygon points="0,380 180,260 340,360 520,240 680,350 800,290 800,420 0,420" fill="#64748b" opacity="0.45"/>
+    <polygon points="120,380 280,280 440,370 600,270 760,360 800,340 800,420 120,420" fill="#475569" opacity="0.5"/>
+
+    <!-- City Skyline Buildings -->
+    <!-- Building 1 -->
+    <rect x="60" y="240" width="90" height="180" fill="#1e293b"/>
+    <!-- Windows 1 -->
+    <g fill="#fef08a" opacity="0.8">
+      <rect x="75" y="255" width="8" height="12"/>
+      <rect x="95" y="255" width="8" height="12"/>
+      <rect x="115" y="255" width="8" height="12"/>
+      <rect x="75" y="280" width="8" height="12"/>
+      <rect x="95" y="280" width="8" height="12"/>
+      <rect x="115" y="280" width="8" height="12"/>
+      <rect x="75" y="305" width="8" height="12"/>
+      <rect x="95" y="305" width="8" height="12"/>
+      <rect x="115" y="305" width="8" height="12"/>
+      <rect x="75" y="330" width="8" height="12"/>
+      <rect x="95" y="330" width="8" height="12"/>
+      <rect x="115" y="330" width="8" height="12"/>
+    </g>
+
+    <!-- Building 2 (Tower) -->
+    <rect x="180" y="160" width="110" height="260" fill="#0f172a"/>
+    <polygon points="235,110 230,160 240,160" fill="#94a3b8"/>
+    <!-- Windows 2 -->
+    <g fill="#93c5fd" opacity="0.75">
+      <rect x="195" y="180" width="14" height="16"/>
+      <rect x="220" y="180" width="14" height="16"/>
+      <rect x="245" y="180" width="14" height="16"/>
+      <rect x="195" y="210" width="14" height="16"/>
+      <rect x="220" y="210" width="14" height="16"/>
+      <rect x="245" y="210" width="14" height="16"/>
+      <rect x="195" y="240" width="14" height="16"/>
+      <rect x="220" y="240" width="14" height="16"/>
+      <rect x="245" y="240" width="14" height="16"/>
+      <rect x="195" y="270" width="14" height="16"/>
+      <rect x="220" y="270" width="14" height="16"/>
+      <rect x="245" y="270" width="14" height="16"/>
+      <rect x="195" y="300" width="14" height="16"/>
+      <rect x="220" y="300" width="14" height="16"/>
+      <rect x="245" y="300" width="14" height="16"/>
+    </g>
+
+    <!-- Building 3 (Modern Slanted) -->
+    <polygon points="320,420 320,200 420,170 420,420" fill="#334155"/>
+    <line x1="370" y1="185" x2="370" y2="420" stroke="#64748b" stroke-width="2"/>
+    <g stroke="#94a3b8" stroke-width="1.5" opacity="0.6">
+      <line x1="330" y1="230" x2="410" y2="205"/>
+      <line x1="330" y1="270" x2="410" y2="245"/>
+      <line x1="330" y1="310" x2="410" y2="285"/>
+      <line x1="330" y1="350" x2="410" y2="325"/>
+    </g>
+
+    <!-- Building 4 -->
+    <rect x="450" y="220" width="120" height="200" fill="#1e293b"/>
+    <!-- Windows 4 -->
+    <g fill="#fed7aa" opacity="0.8">
+      <rect x="470" y="240" width="20" height="10"/>
+      <rect x="505" y="240" width="20" height="10"/>
+      <rect x="535" y="240" width="20" height="10"/>
+      <rect x="470" y="265" width="20" height="10"/>
+      <rect x="505" y="265" width="20" height="10"/>
+      <rect x="535" y="265" width="20" height="10"/>
+      <rect x="470" y="290" width="20" height="10"/>
+      <rect x="505" y="290" width="20" height="10"/>
+      <rect x="535" y="290" width="20" height="10"/>
+    </g>
+
+    <!-- Suspension Bridge Cables -->
+    <path d="M 0 350 Q 200 410 400 370 Q 600 330 800 390" stroke="#f8fafc" stroke-width="3" fill="none" opacity="0.8"/>
+    <path d="M 0 320 Q 200 390 400 350 Q 600 310 800 370" stroke="#f8fafc" stroke-width="2" fill="none" opacity="0.6"/>
+
+    <!-- Ground / Boulevard Road -->
+    <rect x="0" y="420" width="800" height="180" fill="url(#road)"/>
+    <!-- Road Dashes -->
+    <line x1="40" y1="510" x2="140" y2="510" stroke="#fbbf24" stroke-width="5"/>
+    <line x1="200" y1="510" x2="300" y2="510" stroke="#fbbf24" stroke-width="5"/>
+    <line x1="360" y1="510" x2="460" y2="510" stroke="#fbbf24" stroke-width="5"/>
+    <line x1="520" y1="510" x2="620" y2="510" stroke="#fbbf24" stroke-width="5"/>
+    <line x1="680" y1="510" x2="780" y2="510" stroke="#fbbf24" stroke-width="5"/>
+
+    <!-- Street Sign Detail (high frequency edge target) -->
+    <rect x="620" y="380" width="12" height="120" fill="#94a3b8"/>
+    <rect x="580" y="360" width="90" height="34" rx="4" fill="#047857"/>
+    <text x="590" y="382" font-family="'Geist', sans-serif" font-weight="700" font-size="12" fill="#ffffff">MARKET ST</text>
+  </g>
+</svg>

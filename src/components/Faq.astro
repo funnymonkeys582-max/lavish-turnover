@@ -1,0 +1,136 @@
+---
+const faqs = [
+  {
+    q: "How to remove blur from a photo online free?",
+    a: "To remove blur from a photo online for free, simply drag and drop your image into Remove Blur Online or paste it using Ctrl+V / ⌘V. Our browser-based engine automatically computes high-frequency edge gradients and sharpens your image in milliseconds. You can compare the result using the interactive split slider and download the full-resolution output instantly."
+  },
+  {
+    q: "How to remove blur from image without watermark?",
+    a: "Remove Blur Online never places watermarks, stamps, or logos on your images. Unlike other online tools that restrict unwatermarked downloads to paid subscribers or demand credit purchases, every image processed on our platform is 100% free to download in original high resolution."
+  },
+  {
+    q: "Can AI remove blur from images without distorting details?",
+    a: "Yes, when using non-hallucinating edge restoration. Many generative AI remove blur tools invent synthetic details that alter real facial features or turn text into gibberish. Remove Blur Online uses Contrast Adaptive Sharpening (CAS) and luminance deconvolution, restoring authentic optical edges without hallucinating fake pixels."
+  },
+  {
+    q: "How to remove blur from text on receipts, contracts, and documents?",
+    a: "Select our specialized 'Document & Text' preset. It applies local thresholding and high-contrast edge boosting specifically engineered for alphanumeric characters, making illegible numbers, barcodes, and small print clear and legible."
+  },
+  {
+    q: "How to remove blur from photos with motion shake or camera blur?",
+    a: "For motion shake caused by low shutter speeds or trembling hands, choose our 'Motion Shake' preset or adjust the Detail Radius to 2.5px–3.5px in the Fine-Tune drawer. This expands the kernel reach to pull trailing blur streaks back into crisp contours."
+  },
+  {
+    q: "Is Remove Blur Online truly 100% free with no hidden charges?",
+    a: "Yes. Remove Blur Online is completely free. We do not have premium tiers, credit systems, paywalled downloads, or subscription upgrade fees. You can unblur as many images as you need with zero limits."
+  },
+  {
+    q: "Do I need to create an account or provide my email address?",
+    a: "No account is required. You never have to sign up, provide your email, or link social accounts. Just open the website, unblur your photo, and download your result."
+  },
+  {
+    q: "Are my uploaded photos safe and private?",
+    a: "100% safe. All sharpening algorithms execute locally in your web browser using HTML5 Canvas. Your images are never transmitted over the internet or saved on external servers, ensuring total confidentiality."
+  },
+  {
+    q: "How to remove blur from photos",
+    a: "To remove blur from photos, upload your image to Remove Blur Online, choose the Auto Clarity preset, and let the browser-based engine restore edge sharpness in milliseconds. Use the split-slider to compare before and after, then download the full-resolution result free of watermarks."
+  },
+  {
+    q: "How to remove blur from a photo",
+    a: "Remove blur from a photo by dragging and dropping it into Remove Blur Online or pasting from your clipboard (Ctrl+V / ⌘V). Select a preset matched to your blur type — Auto Clarity, Motion Shake, Document & Text, or Portrait & Face — then download the sharpened image in original resolution."
+  },
+  {
+    q: "How to remove blur from image",
+    a: "Remove blur from image files in JPG, PNG, WEBP, AVIF, or BMP format by uploading them to our free online tool. All sharpening runs locally in your browser using Contrast Adaptive Sharpening and luminance deconvolution, so your photo stays private and downloads with no watermark."
+  },
+  {
+    q: "Can AI remove blur?",
+    a: "Yes. AI can remove blur, but not all AI is equal. Generative AI tools often hallucinate fake details that alter faces and text. Remove Blur Online uses authentic edge restoration — Contrast Adaptive Sharpening and luminance-channel deconvolution — to recover real optical edges without inventing synthetic pixels."
+  },
+  {
+    q: "Can face blur be removed?",
+    a: "Yes, face blur can be removed using the Portrait & Face preset, which sharpens eyes, eyelashes, hair, and pupils while keeping skin midtones soft and natural. Because processing happens in-browser, facial details are restored authentically without generative AI distorting facial geometry."
+  },
+  {
+    q: "How to remove blur from photo?",
+    a: "To remove blur from a photo, open Remove Blur Online, upload or paste your image, pick the preset that matches your blur type, inspect the result with the interactive split slider, and click Download Sharp Result to save it watermark-free in full resolution."
+  },
+  {
+    q: "How to remove blur",
+    a: "Remove blur by uploading your photo to a free online sharpener like Remove Blur Online. Choose from presets for auto clarity, motion shake, document text, or portrait faces, then compare and download the deblurred image with no watermark, no signup, and no server upload."
+  }
+];
+---
+
+<section id="faq" class="relative max-w-[1200px] mx-auto px-4 sm:px-6 py-12 md:py-16 border-t border-[#ebebeb]">
+  <div class="text-center max-w-2xl mx-auto mb-12">
+    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#ebebeb] bg-white text-[12px] font-mono uppercase tracking-wider text-[#8f8f8f] shadow-whisper mb-3">
+      Frequently Asked Questions
+    </div>
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#171717] tracking-[-0.03em] mb-4">
+      Frequently Asked Questions: How to Remove Blur
+    </h2>
+    <p class="text-[15px] text-[#4d4d4d] leading-relaxed">
+      Clear answers on how to remove blur from image files, our zero-watermark policy, and technical privacy guarantees.
+    </p>
+  </div>
+
+  <div class="max-w-3xl mx-auto space-y-3">
+    {faqs.map((faq) => (
+      <div class="faq-item border border-[#ebebeb] bg-white rounded-xl overflow-hidden shadow-whisper transition-all duration-200">
+        <button
+          type="button"
+          class="faq-trigger w-full px-5 py-4 text-left flex items-center justify-between gap-4 font-medium text-[15px] text-[#171717] hover:bg-[#fafafa] transition-colors cursor-pointer select-none"
+          aria-expanded="false"
+        >
+          <span>{faq.q}</span>
+          <svg
+            class="faq-icon w-4 h-4 text-[#8f8f8f] transition-transform duration-200 shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+          </svg>
+        </button>
+        <div class="faq-content hidden px-5 pb-4 text-[14px] text-[#4d4d4d] leading-relaxed border-t border-[#ebebeb]/60 pt-3">
+          {faq.a}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const trigger = item.querySelector('.faq-trigger');
+      const content = item.querySelector('.faq-content');
+      const icon = item.querySelector('.faq-icon');
+
+      trigger?.addEventListener('click', () => {
+        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+        
+        // Close all
+        faqItems.forEach(otherItem => {
+          const otherTrigger = otherItem.querySelector('.faq-trigger');
+          const otherContent = otherItem.querySelector('.faq-content');
+          const otherIcon = otherItem.querySelector('.faq-icon');
+          otherTrigger?.setAttribute('aria-expanded', 'false');
+          otherContent?.classList.add('hidden');
+          otherIcon?.classList.remove('rotate-180');
+        });
+
+        // Toggle clicked
+        if (!isExpanded) {
+          trigger.setAttribute('aria-expanded', 'true');
+          content?.classList.remove('hidden');
+          icon?.classList.add('rotate-180');
+        }
+      });
+    });
+  });
+</script>

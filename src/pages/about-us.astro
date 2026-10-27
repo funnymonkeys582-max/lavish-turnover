@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="About Us | Remove Blur Online — Free AI Photo Unblurrer"
+  description="About Remove Blur Online: a 100% free, client-side AI photo unblurring tool that removes blur from images without watermarks, signups, or cloud uploads."
+>
+  <Header />
+  <main class="flex-1 max-w-[1200px] mx-auto px-4 sm:px-6 py-20 md:py-32">
+    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#ebebeb] bg-white text-[12px] font-mono uppercase tracking-wider text-[#8f8f8f] shadow-whisper mx-auto mb-6">
+      About Us
+    </div>
+    <h1 class="text-3xl sm:text-5xl font-semibold text-[#171717] tracking-[-0.04em] mb-6 leading-tight">
+      About Remove Blur Online
+    </h1>
+    <p class="text-[15px] sm:text-lg text-[#4d4d4d] max-w-xl mx-auto mb-10 leading-relaxed">
+      Remove Blur Online is a free, single-purpose tool for removing blur from photos and images online — no watermarks, no
+      signups, no subscriptions, and no cloud uploads.
+    </p>
+
+    <div class="space-y-10 max-w-2xl mx-auto">
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#171717] tracking-[-0.04em] mb-4 leading-tight">
+          Why Remove Blur Online Exists
+        </h2>
+        <p class="text-[#4d4d4d] leading-relaxed mb-4">
+          Most online photo unblurring tools hide full-resolution downloads behind paywalls, require credit purchases, or stamp
+          results with watermarks. Many also upload your private photos to remote servers for processing. We built Remove Blur
+          Online to be the opposite: a genuinely free, private, instant unblurring tool that runs entirely in your browser.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#171717] tracking-[-0.04em] mb-4 leading-tight">
+          How It Works
+        </h2>
+        <p class="text-[#4d4d4d] leading-relaxed mb-4">
+          You drag and drop a blurry image (or paste it with Ctrl+V / ⌘V), choose a preset matched to your blur type — Auto
+          Clarity, Portrait &amp; Face, Document &amp; Text, or Motion Shake — and sharpen it with Contrast Adaptive Sharpening and
+          luminance deconvolution. Everything executes locally on HTML5 Canvas. An interactive split-slider lets you compare
+          before and after, and you download the result in original resolution as PNG, JPG, or WEBP with zero watermarks.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#171717] tracking-[-0.04em] mb-4 leading-tight">
+          Our Commitment
+        </h2>
+        <ul class="space-y-3 text-[#4d4d4d] leading-relaxed list-disc pl-5 mb-4">
+          <li><strong>100% free.</strong> No premium tiers, credit systems, or paywalled downloads.</li>
+          <li><strong>No watermarks.</strong> Every download is clean and logo-free.</li>
+          <li><strong>No account required.</strong> No email, no signup, no social login.</li>
+          <li><strong>Zero cloud uploads.</strong> All processing is client-side in your browser.</li>
+          <li><strong>Full-resolution exports.</strong> PNG, JPG, and WEBP at original quality.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#171717] tracking-[-0.04em] mb-4 leading-tight">
+          Who It's For
+        </h2>
+        <p class="text-[#4d4d4d] leading-relaxed mb-4">
+          Whether you're rescuing a blurry portrait, sharpening text on a receipt or contract, recovering detail from a shaky
+          document, or cleaning up old family photos, Remove Blur Online works for anyone with a browser — no software to install,
+          nothing to pay.
+        </p>
+      </section>
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-[#ebebeb] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#8f8f8f]">
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#171717] text-white text-[14px] font-medium shadow-whisper hover:bg-black transition-all active:scale-[0.98]"
+      >
+        ← Back to Unblur Tool
+      </a>
+    </div>
+  </main>
+  <Footer />
+</Layout>

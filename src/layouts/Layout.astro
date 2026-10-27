@@ -1,23 +1,266 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import '../styles/global.css';
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Remove Blur: Remove Blur from Image Online Free | Photo Blur Remover",
+  description = "Learn how to remove blur from a photo or image online free without watermark. Fast AI remove blur and edge sharpening for portraits, text, and photos with 100% privacy."
+} = Astro.props;
+
+const siteUrl = "https://removebluronline.com";
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+
+const schemaOrg = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": `${siteUrl}/#webapp`,
+      "name": "Remove Blur Online",
+      "alternateName": ["Remove Blur", "AI Remove Blur", "Remove Blur AI"],
+      "url": siteUrl,
+      "applicationCategory": "PhotoEditingApplication",
+      "operatingSystem": "All modern browsers (Chrome, Safari, Firefox, Edge, Brave, Opera)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": description,
+      "featureList": [
+        "Remove blur from image online free",
+        "Remove blur from photo online free without watermark",
+        "AI remove blur and mathematical edge restoration",
+        "Interactive split-screen before and after comparison slider",
+        "100% private client-side image processing with zero cloud uploads",
+        "No login, no registration, no subscription paywalls",
+        "Export in original full resolution in PNG, JPG, and WEBP formats"
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": `${siteUrl}/#howto`,
+      "name": "How to Remove Blur from a Photo or Image Online Free",
+      "description": "Follow these simple steps to remove blur from any blurry image or photo online for free without watermarks.",
+      "totalTime": "PT1M",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Upload or Paste Your Blurry Photo",
+          "text": "Drag and drop your blurry image into the upload box, browse from your computer or phone, or paste directly with Ctrl+V / Cmd+V.",
+          "url": `${siteUrl}/#unblur-tool`
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Select an AI Remove Blur Preset",
+          "text": "Choose from Auto Clarity, Portrait & Face, Document & Text, or Motion Shake presets, or use the Fine-Tune drawer to customize sharpness intensity.",
+          "url": `${siteUrl}/#unblur-tool`
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Inspect With Split-Screen Comparison",
+          "text": "Drag the interactive before/after slider or toggle Side-by-Side mode to inspect recovered details, lashes, edges, and text.",
+          "url": `${siteUrl}/#unblur-tool`
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Download in Original High Resolution",
+          "text": "Click Download Sharp Result to save your clean, unblurred photo in original quality as PNG, JPG, or WEBP with zero watermarks.",
+          "url": `${siteUrl}/#unblur-tool`
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${siteUrl}/#faq`,
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How to remove blur from a photo online free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To remove blur from a photo online for free, simply drag and drop your image into Remove Blur Online or paste it using Ctrl+V / ⌘V. Our browser-based engine automatically computes high-frequency edge gradients and sharpens your image in milliseconds. You can compare the result using the interactive split slider and download the full-resolution output instantly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to remove blur from image without watermark?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Remove Blur Online never places watermarks, stamps, or logos on your images. Unlike other online tools that restrict unwatermarked downloads to paid subscribers or demand credit purchases, every image processed on our platform is 100% free to download in original high resolution."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can AI remove blur from images without distorting details?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, when using non-hallucinating edge restoration. Many generative AI remove blur tools invent synthetic details that alter real facial features or turn text into gibberish. Remove Blur Online uses Contrast Adaptive Sharpening (CAS) and luminance deconvolution, restoring authentic optical edges without hallucinating fake pixels."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to remove blur from text on receipts, contracts, and documents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Select our specialized 'Document & Text' preset. It applies local thresholding and high-contrast edge boosting specifically engineered for alphanumeric characters, making illegible numbers, barcodes, and small print clear and legible."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to remove blur from photos with motion shake or camera blur?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For motion shake caused by low shutter speeds or trembling hands, choose our 'Motion Shake' preset or adjust the Detail Radius to 2.5px–3.5px in the Fine-Tune drawer. This expands the kernel reach to pull trailing blur streaks back into crisp contours."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Remove Blur Online truly 100% free with no hidden charges?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Remove Blur Online is completely free. We do not have premium tiers, credit systems, paywalled downloads, or subscription upgrade fees. You can unblur as many images as you need with zero limits."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to create an account or provide my email address?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No account is required. You never have to sign up, provide your email, or link social accounts. Just open the website, unblur your photo, and download your result."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are my uploaded photos safe and private?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "100% safe. All sharpening algorithms execute locally in your web browser using HTML5 Canvas. Your images are never transmitted over the internet or saved on external servers, ensuring total confidentiality."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to remove blur from photos",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To remove blur from photos, upload your image to Remove Blur Online, choose the Auto Clarity preset, and let the browser-based engine restore edge sharpness in milliseconds. Use the split-slider to compare before and after, then download the full-resolution result free of watermarks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to remove blur from a photo",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Remove blur from a photo by dragging and dropping it into Remove Blur Online or pasting from your clipboard (Ctrl+V / ⌘V). Select a preset matched to your blur type — Auto Clarity, Motion Shake, Document & Text, or Portrait & Face — then download the sharpened image in original resolution."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to remove blur from image",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Remove blur from image files in JPG, PNG, WEBP, AVIF, or BMP format by uploading them to our free online tool. All sharpening runs locally in your browser using Contrast Adaptive Sharpening and luminance deconvolution, so your photo stays private and downloads with no watermark."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can AI remove blur?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. AI can remove blur, but not all AI is equal. Generative AI tools often hallucinate fake details that alter faces and text. Remove Blur Online uses authentic edge restoration — Contrast Adaptive Sharpening and luminance-channel deconvolution — to recover real optical edges without inventing synthetic pixels."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can face blur be removed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, face blur can be removed using the Portrait & Face preset, which sharpens eyes, eyelashes, hair, and pupils while keeping skin midtones soft and natural. Because processing happens in-browser, facial details are restored authentically without generative AI distorting facial geometry."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to remove blur from photo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To remove blur from a photo, open Remove Blur Online, upload or paste your image, pick the preset that matches your blur type, inspect the result with the interactive split slider, and click Download Sharp Result to save it watermark-free in full resolution."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to remove blur",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Remove blur by uploading your photo to a free online sharpener like Remove Blur Online. Choose from presets for auto clarity, motion shake, document text, or portrait faces, then compare and download the deblurred image with no watermark, no signup, and no server upload."
+          }
+        }
+      ]
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="RemoveBlurOnline" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="remove blur, remove blur from image, how to remove blur from a photo, ai remove blur, remove blur ai, how to remove blur from image, how to remove blur, remove blur from photo free, how to remove blur from photo, remove blur from photo, remove blur from image online, remove blur from photo online free, how to remove blur from photos, remove blur from image online free, remove blur from photo online free without watermark, remove blur from image free, remove blur image, remove blur from image online free ai" />
+    <meta name="author" content="Remove Blur Online" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#fafafa" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Remove Blur Online" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={`${siteUrl}/og-image.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Remove Blur: Remove Blur from Image Online Free Without Watermark" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}/og-image.png`} />
+    <meta name="twitter:image:alt" content="Remove Blur from Photo Online Free" />
+    <meta name="twitter:creator" content="@removebluronline" />
+    <meta name="twitter:site" content="@removebluronline" />
+
+    <!-- Google Fonts: Geist & Geist Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+  </head>
+  <body class="bg-[#fafafa] text-[#4d4d4d] font-sans antialiased selection:bg-[#171717] selection:text-white min-h-screen flex flex-col">
+    <slot />
+  </body>
+</html>

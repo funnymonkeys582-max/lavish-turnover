@@ -1,0 +1,816 @@
+---
+---
+
+<section id="unblur-tool" class="relative max-w-[1200px] mx-auto px-4 sm:px-6 py-8 md:py-12">
+  <!-- Main Container Card per DESIGN.md (hairline border, elevated white, whisper shadow) -->
+  <div class="border border-[#ebebeb] bg-white rounded-2xl shadow-whisper overflow-hidden transition-all duration-300">
+    
+    <!-- Top Bar inside App Container -->
+    <div class="px-5 py-3.5 border-b border-[#ebebeb] bg-[#fafafa] flex flex-wrap items-center justify-between gap-3 text-[13px]">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+        <span class="font-medium text-[#171717]">Browser Processing Engine Active</span>
+        <span class="text-[#8f8f8f]">•</span>
+        <span class="text-[#8f8f8f] font-mono text-[12px] hidden sm:inline">100% Local • Zero Cloud Uploads</span>
+      </div>
+
+      <div class="flex items-center gap-2" id="telemetry-box" style="display: none;">
+        <span class="px-2 py-0.5 rounded-[6px] bg-white border border-[#ebebeb] font-mono text-[11px] text-[#4d4d4d]" id="dim-badge">
+          0 × 0 px
+        </span>
+        <span class="px-2 py-0.5 rounded-[6px] bg-white border border-[#ebebeb] font-mono text-[11px] text-[#0070f3]" id="time-badge">
+          ⚡ 0ms
+        </span>
+      </div>
+    </div>
+
+    <!-- Upload Drop Zone (Shown when no image is loaded) -->
+    <div id="drop-zone" class="p-8 sm:p-14 text-center cursor-pointer transition-colors duration-200 hover:bg-[#fafafa]/80 relative group">
+      <input type="file" id="file-input" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
+      
+      <div class="max-w-md mx-auto flex flex-col items-center">
+        <!-- Animated Icon Container -->
+        <div class="w-16 h-16 rounded-2xl bg-[#fafafa] border border-[#ebebeb] flex items-center justify-center text-[#171717] mb-5 shadow-whisper group-hover:scale-105 group-hover:border-[#0070f3]/40 group-hover:text-[#0070f3] transition-all duration-200">
+          <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+          </svg>
+        </div>
+
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#171717] tracking-tight mb-2">
+          Drop your blurry photo here
+        </h2>
+        <p class="text-[14px] text-[#4d4d4d] mb-6">
+          or click to browse from your device. You can also paste directly with <kbd class="px-1.5 py-0.5 text-xs font-mono bg-[#f2f2f2] border border-[#ebebeb] rounded text-[#171717]">Ctrl+V</kbd> / <kbd class="px-1.5 py-0.5 text-xs font-mono bg-[#f2f2f2] border border-[#ebebeb] rounded text-[#171717]">⌘V</kbd>
+        </p>
+
+        <!-- Marketing Pill CTA -->
+        <div class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#171717] text-white font-medium text-[14px] shadow-whisper group-hover:bg-black transition-colors pointer-events-none mb-4">
+          <svg class="w-4 h-4 text-[#50e3c2]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+          Select Photo to Unblur
+        </div>
+
+        <div class="text-[12px] text-[#8f8f8f] flex items-center gap-2">
+          <span>Supports JPG, PNG, WEBP, AVIF, BMP</span>
+          <span>•</span>
+          <span class="text-emerald-600 font-medium">100% Free & Unlimited</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Samples Strip (Shown at bottom of upload or always accessible) -->
+    <div id="sample-strip" class="px-6 py-5 border-t border-[#ebebeb] bg-[#fafafa]/50">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 mb-3">
+        <span class="font-mono text-xs uppercase font-medium text-[#8f8f8f] tracking-wider">
+          Don't have an image ready? Try these test samples:
+        </span>
+        <span class="text-xs text-[#8f8f8f]">Click any sample to test instant unblur</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <!-- Sample 1: Portrait -->
+        <button
+          type="button"
+          data-sample="/samples/portrait.svg"
+          data-preset="portrait"
+          class="sample-btn flex items-center gap-3 p-2.5 rounded-[10px] bg-white border border-[#ebebeb] hover:border-[#0070f3] hover:shadow-whisper text-left transition-all duration-150 group cursor-pointer"
+        >
+          <img src="/samples/portrait.svg" alt="Sample Portrait" class="w-12 h-12 rounded-[6px] object-cover border border-[#ebebeb] shrink-0" />
+          <div class="min-w-0">
+            <div class="text-[13px] font-medium text-[#171717] group-hover:text-[#0070f3] transition-colors truncate">
+              Out-of-Focus Portrait
+            </div>
+            <div class="text-[11px] text-[#8f8f8f] truncate">
+              Restores facial features & hair
+            </div>
+          </div>
+        </button>
+
+        <!-- Sample 2: Document -->
+        <button
+          type="button"
+          data-sample="/samples/document.svg"
+          data-preset="document"
+          class="sample-btn flex items-center gap-3 p-2.5 rounded-[10px] bg-white border border-[#ebebeb] hover:border-[#0070f3] hover:shadow-whisper text-left transition-all duration-150 group cursor-pointer"
+        >
+          <img src="/samples/document.svg" alt="Sample Document" class="w-12 h-12 rounded-[6px] object-cover border border-[#ebebeb] shrink-0" />
+          <div class="min-w-0">
+            <div class="text-[13px] font-medium text-[#171717] group-hover:text-[#0070f3] transition-colors truncate">
+              Scanned Tax Invoice
+            </div>
+            <div class="text-[11px] text-[#8f8f8f] truncate">
+              Sharpens illegible text & numbers
+            </div>
+          </div>
+        </button>
+
+        <!-- Sample 3: Nature/City -->
+        <button
+          type="button"
+          data-sample="/samples/nature.svg"
+          data-preset="motion"
+          class="sample-btn flex items-center gap-3 p-2.5 rounded-[10px] bg-white border border-[#ebebeb] hover:border-[#0070f3] hover:shadow-whisper text-left transition-all duration-150 group cursor-pointer"
+        >
+          <img src="/samples/nature.svg" alt="Sample City" class="w-12 h-12 rounded-[6px] object-cover border border-[#ebebeb] shrink-0" />
+          <div class="min-w-0">
+            <div class="text-[13px] font-medium text-[#171717] group-hover:text-[#0070f3] transition-colors truncate">
+              Camera Motion Shake
+            </div>
+            <div class="text-[11px] text-[#8f8f8f] truncate">
+              Clarifies architecture & edges
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Active Workspace (Split-Screen Interactive Editor) -->
+    <div id="editor-workspace" class="hidden flex-col">
+      <!-- Controls Toolbar -->
+      <div class="px-5 py-3 border-b border-[#ebebeb] bg-[#fafafa] flex flex-wrap items-center justify-between gap-3">
+        <!-- Mode Presets -->
+        <div class="flex items-center gap-1.5 overflow-x-auto py-1">
+          <span class="text-[12px] font-medium text-[#8f8f8f] mr-1 hidden sm:inline">Preset:</span>
+          
+          <button type="button" data-preset-btn="auto" class="preset-pill px-3 py-1.5 rounded-full text-[12px] font-medium border border-[#171717] bg-[#171717] text-white shadow-whisper transition-all cursor-pointer">
+            🪄 Auto Clarity
+          </button>
+          <button type="button" data-preset-btn="portrait" class="preset-pill px-3 py-1.5 rounded-full text-[12px] font-medium border border-[#ebebeb] bg-white text-[#4d4d4d] hover:border-[#171717] hover:text-[#171717] transition-all cursor-pointer">
+            👤 Portrait & Face
+          </button>
+          <button type="button" data-preset-btn="document" class="preset-pill px-3 py-1.5 rounded-full text-[12px] font-medium border border-[#ebebeb] bg-white text-[#4d4d4d] hover:border-[#171717] hover:text-[#171717] transition-all cursor-pointer">
+            📄 Document & Text
+          </button>
+          <button type="button" data-preset-btn="motion" class="preset-pill px-3 py-1.5 rounded-full text-[12px] font-medium border border-[#ebebeb] bg-white text-[#4d4d4d] hover:border-[#171717] hover:text-[#171717] transition-all cursor-pointer">
+            📸 Motion Shake
+          </button>
+        </div>
+
+        <!-- View Controls & Comparison Mode -->
+        <div class="flex items-center gap-2">
+          <!-- View Modes -->
+          <div class="inline-flex rounded-[6px] border border-[#ebebeb] bg-white p-0.5 text-[12px]">
+            <button type="button" id="mode-split" class="px-2.5 py-1 rounded-[4px] font-medium bg-[#171717] text-white transition-all cursor-pointer" title="Split comparison slider">
+              Split Slider
+            </button>
+            <button type="button" id="mode-side" class="px-2.5 py-1 rounded-[4px] font-medium text-[#4d4d4d] hover:text-[#171717] transition-all cursor-pointer" title="Side-by-side view">
+              Side-by-Side
+            </button>
+          </div>
+
+          <!-- Hold to View Original -->
+          <button
+            type="button"
+            id="hold-compare-btn"
+            class="px-3 py-1 text-[12px] font-medium rounded-[6px] border border-[#ebebeb] bg-white text-[#171717] hover:bg-[#f2f2f2] active:bg-[#171717] active:text-white transition-all select-none cursor-pointer"
+            title="Press and hold to view original blurry photo"
+          >
+            Hold to Compare
+          </button>
+
+          <!-- Toggle Advanced Adjustments -->
+          <button
+            type="button"
+            id="toggle-adjustments-btn"
+            class="px-2.5 py-1 text-[12px] font-medium rounded-[6px] border border-[#ebebeb] bg-white text-[#4d4d4d] hover:text-[#171717] flex items-center gap-1 cursor-pointer"
+          >
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+            </svg>
+            Fine-Tune
+          </button>
+        </div>
+      </div>
+
+      <!-- Fine-Tune Sliders Drawer (Collapsible) -->
+      <div id="adjustments-panel" class="hidden px-5 py-4 border-b border-[#ebebeb] bg-[#fafafa]/80 grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <!-- Sharpness Strength -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between text-[12px]">
+            <span class="font-medium text-[#171717]">Sharpness Intensity</span>
+            <span id="label-amount" class="font-mono text-[#0070f3] font-medium">140%</span>
+          </div>
+          <input type="range" id="slider-amount" min="20" max="280" value="140" step="5" class="w-full accent-[#0070f3] cursor-pointer" />
+        </div>
+
+        <!-- Detail Radius -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between text-[12px]">
+            <span class="font-medium text-[#171717]">Detail Radius</span>
+            <span id="label-radius" class="font-mono text-[#0070f3] font-medium">2.0 px</span>
+          </div>
+          <input type="range" id="slider-radius" min="1" max="4" value="2" step="0.5" class="w-full accent-[#0070f3] cursor-pointer" />
+        </div>
+
+        <!-- Noise Threshold -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between text-[12px]">
+            <span class="font-medium text-[#171717]">Noise Suppression</span>
+            <span id="label-threshold" class="font-mono text-[#0070f3] font-medium">3</span>
+          </div>
+          <input type="range" id="slider-threshold" min="0" max="15" value="3" step="1" class="w-full accent-[#0070f3] cursor-pointer" />
+        </div>
+      </div>
+
+      <!-- Canvas Interactive Viewport Area -->
+      <div class="relative w-full bg-[#111111] overflow-hidden select-none min-h-[380px] sm:min-h-[520px] flex items-center justify-center p-3 sm:p-6" id="canvas-wrapper">
+        
+        <!-- Processing Spinner Overlay -->
+        <div id="processing-loader" class="absolute inset-0 z-30 bg-black/40 backdrop-blur-[2px] flex items-center justify-center transition-opacity duration-150 pointer-events-none opacity-0">
+          <div class="px-4 py-2 rounded-full bg-[#171717] border border-white/10 text-white text-xs font-medium flex items-center gap-2 shadow-floating">
+            <svg class="w-3.5 h-3.5 animate-spin text-[#50e3c2]" viewBox="0 0 24 24" fill="none">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+            </svg>
+            Enhancing details...
+          </div>
+        </div>
+
+        <!-- Split Slider Container -->
+        <div id="split-container" class="relative max-w-full max-h-[70vh] rounded-lg overflow-hidden shadow-2xl cursor-ew-resize">
+          <!-- Before Canvas (Original Blurry) -->
+          <canvas id="canvas-before" class="block max-w-full max-h-[70vh] object-contain"></canvas>
+
+          <!-- After Canvas (Sharpened Crisp) -->
+          <div id="after-clip" class="absolute inset-0 overflow-hidden" style="width: 50%;">
+            <canvas id="canvas-after" class="block max-w-none h-full object-contain"></canvas>
+          </div>
+
+          <!-- Draggable Divider Line & Handle -->
+          <div id="slider-line" class="absolute top-0 bottom-0 w-0.5 bg-white shadow-[0_0_8px_rgba(0,0,0,0.6)] cursor-ew-resize" style="left: 50%;">
+            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white text-[#171717] shadow-floating flex items-center justify-center text-[10px] font-bold border border-black/10 transition-transform hover:scale-110 active:scale-95">
+              ◂ ▸
+            </div>
+          </div>
+
+          <!-- Labels: Before / After -->
+          <div class="absolute top-3 left-3 px-2 py-0.5 rounded-[4px] bg-black/60 backdrop-blur-md text-white text-[11px] font-mono uppercase tracking-wider font-medium pointer-events-none">
+            Original (Blurry)
+          </div>
+          <div class="absolute top-3 right-3 px-2 py-0.5 rounded-[4px] bg-[#0070f3]/85 backdrop-blur-md text-white text-[11px] font-mono uppercase tracking-wider font-medium pointer-events-none">
+            Restored (Sharp)
+          </div>
+        </div>
+
+        <!-- Side-by-Side Container (Hidden by default) -->
+        <div id="side-container" class="hidden w-full max-h-[70vh] grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="relative rounded-lg overflow-hidden border border-white/10 bg-black/50 flex flex-col items-center">
+            <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded bg-black/60 text-white text-[10px] font-mono uppercase">Original</span>
+            <canvas id="canvas-side-before" class="max-w-full max-h-[50vh] object-contain"></canvas>
+          </div>
+          <div class="relative rounded-lg overflow-hidden border border-[#0070f3]/40 bg-black/50 flex flex-col items-center">
+            <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded bg-[#0070f3] text-white text-[10px] font-mono uppercase">Sharpened</span>
+            <canvas id="canvas-side-after" class="max-w-full max-h-[50vh] object-contain"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Action Bar -->
+      <div class="p-4 sm:p-5 border-t border-[#ebebeb] bg-white flex flex-wrap items-center justify-between gap-4">
+        <!-- Left: Upload New & Reset -->
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            id="reset-btn"
+            class="px-3.5 py-2 text-[13px] font-medium rounded-full border border-[#ebebeb] bg-white text-[#171717] hover:bg-[#fafafa] transition-colors flex items-center gap-1.5 cursor-pointer"
+          >
+            <svg class="w-4 h-4 text-[#8f8f8f]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+            </svg>
+            Upload Another
+          </button>
+
+          <button
+            type="button"
+            id="copy-btn"
+            class="px-3.5 py-2 text-[13px] font-medium rounded-full border border-[#ebebeb] bg-white text-[#171717] hover:bg-[#fafafa] transition-colors flex items-center gap-1.5 cursor-pointer"
+          >
+            <svg class="w-4 h-4 text-[#8f8f8f]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
+            </svg>
+            <span id="copy-text">Copy Image</span>
+          </button>
+        </div>
+
+        <!-- Right: Primary Download with Format Choice -->
+        <div class="flex items-center gap-2">
+          <!-- Format Selector Pill -->
+          <div class="flex items-center rounded-full border border-[#ebebeb] bg-[#fafafa] p-0.5 text-xs">
+            <button type="button" data-fmt="png" class="fmt-btn px-2.5 py-1 rounded-full font-medium bg-white text-[#171717] shadow-whisper cursor-pointer">
+              PNG (Lossless)
+            </button>
+            <button type="button" data-fmt="jpeg" class="fmt-btn px-2.5 py-1 rounded-full font-medium text-[#4d4d4d] hover:text-[#171717] cursor-pointer">
+              JPG
+            </button>
+            <button type="button" data-fmt="webp" class="fmt-btn px-2.5 py-1 rounded-full font-medium text-[#4d4d4d] hover:text-[#171717] cursor-pointer">
+              WEBP
+            </button>
+          </div>
+
+          <!-- Marketing Primary Download Button -->
+          <button
+            type="button"
+            id="download-btn"
+            class="px-5 py-2.5 rounded-full bg-[#171717] hover:bg-black text-white text-[14px] font-medium shadow-whisper flex items-center gap-2 transition-all active:scale-[0.98] cursor-pointer"
+          >
+            <svg class="w-4 h-4 text-[#50e3c2]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+            Download Sharp Result
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Client-side Application Script -->
+<script>
+  import { processUnblur, applyMicroContrast } from '../scripts/imageEngine';
+
+  // State
+  let currentImage: HTMLImageElement | null = null;
+  let originalWidth = 0;
+  let originalHeight = 0;
+  let selectedFormat: 'png' | 'jpeg' | 'webp' = 'png';
+  let isSideBySide = false;
+  let splitPercent = 50;
+  let isDragging = false;
+  let renderDebounceTimer: number | null = null;
+
+  // Preset settings
+  const presets: Record<string, { amount: number; radius: number; threshold: number; mode: 'auto' | 'portrait' | 'document' | 'motion' }> = {
+    auto: { amount: 1.4, radius: 2.0, threshold: 3, mode: 'auto' },
+    portrait: { amount: 1.2, radius: 1.5, threshold: 5, mode: 'portrait' },
+    document: { amount: 2.1, radius: 2.5, threshold: 1, mode: 'document' },
+    motion: { amount: 1.8, radius: 2.5, threshold: 4, mode: 'motion' }
+  };
+
+  let currentSettings = { ...presets.auto };
+
+  // DOM Elements
+  const dropZone = document.getElementById('drop-zone');
+  const fileInput = document.getElementById('file-input') as HTMLInputElement | null;
+  const editorWorkspace = document.getElementById('editor-workspace');
+  const sampleStrip = document.getElementById('sample-strip');
+  const telemetryBox = document.getElementById('telemetry-box');
+  const dimBadge = document.getElementById('dim-badge');
+  const timeBadge = document.getElementById('time-badge');
+  const processingLoader = document.getElementById('processing-loader');
+
+  // Canvases
+  const splitContainer = document.getElementById('split-container');
+  const sideContainer = document.getElementById('side-container');
+  const canvasBefore = document.getElementById('canvas-before') as HTMLCanvasElement | null;
+  const canvasAfter = document.getElementById('canvas-after') as HTMLCanvasElement | null;
+  const canvasSideBefore = document.getElementById('canvas-side-before') as HTMLCanvasElement | null;
+  const canvasSideAfter = document.getElementById('canvas-side-after') as HTMLCanvasElement | null;
+  const afterClip = document.getElementById('after-clip');
+  const sliderLine = document.getElementById('slider-line');
+
+  // Controls
+  const modeSplitBtn = document.getElementById('mode-split');
+  const modeSideBtn = document.getElementById('mode-side');
+  const holdCompareBtn = document.getElementById('hold-compare-btn');
+  const toggleAdjustmentsBtn = document.getElementById('toggle-adjustments-btn');
+  const adjustmentsPanel = document.getElementById('adjustments-panel');
+  const sliderAmount = document.getElementById('slider-amount') as HTMLInputElement | null;
+  const sliderRadius = document.getElementById('slider-radius') as HTMLInputElement | null;
+  const sliderThreshold = document.getElementById('slider-threshold') as HTMLInputElement | null;
+  const labelAmount = document.getElementById('label-amount');
+  const labelRadius = document.getElementById('label-radius');
+  const labelThreshold = document.getElementById('label-threshold');
+  const resetBtn = document.getElementById('reset-btn');
+  const copyBtn = document.getElementById('copy-btn');
+  const copyText = document.getElementById('copy-text');
+  const downloadBtn = document.getElementById('download-btn');
+  const fmtButtons = document.querySelectorAll('.fmt-btn');
+  const presetButtons = document.querySelectorAll('[data-preset-btn]');
+  const sampleButtons = document.querySelectorAll('.sample-btn');
+
+  // Initialize
+  function init() {
+    setupFileInput();
+    setupDropZone();
+    setupPresets();
+    setupSliders();
+    setupSplitSlider();
+    setupButtons();
+    setupSampleButtons();
+    setupClipboardPaste();
+  }
+
+  function setupFileInput() {
+    fileInput?.addEventListener('change', (e) => {
+      const target = e.target as HTMLInputElement;
+      if (target.files && target.files[0]) {
+        loadImageFile(target.files[0]);
+      }
+    });
+  }
+
+  function setupDropZone() {
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropZone?.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropZone.classList.add('bg-[#fafafa]');
+        dropZone.classList.add('border-[#0070f3]');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropZone?.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('bg-[#fafafa]');
+        dropZone.classList.remove('border-[#0070f3]');
+      });
+    });
+
+    dropZone?.addEventListener('drop', (e: DragEvent) => {
+      const dt = e.dataTransfer;
+      if (dt && dt.files && dt.files[0]) {
+        loadImageFile(dt.files[0]);
+      }
+    });
+  }
+
+  function setupClipboardPaste() {
+    window.addEventListener('paste', (e: ClipboardEvent) => {
+      const items = e.clipboardData?.items;
+      if (!items) return;
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf('image') !== -1) {
+          const file = items[i].getAsFile();
+          if (file) loadImageFile(file);
+          break;
+        }
+      }
+    });
+  }
+
+  function setupSampleButtons() {
+    sampleButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const url = btn.getAttribute('data-sample');
+        const preset = btn.getAttribute('data-preset') || 'auto';
+        if (url) {
+          loadSampleImage(url, preset);
+        }
+      });
+    });
+  }
+
+  function loadSampleImage(url: string, presetName: string) {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      currentImage = img;
+      originalWidth = img.naturalWidth || img.width || 800;
+      originalHeight = img.naturalHeight || img.height || 600;
+
+      // Apply matching preset
+      applyPreset(presetName);
+      switchToEditor();
+      renderImage();
+    };
+    img.src = url;
+  }
+
+  function loadImageFile(file: File) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        currentImage = img;
+        originalWidth = img.naturalWidth;
+        originalHeight = img.naturalHeight;
+        switchToEditor();
+        renderImage();
+      };
+      if (e.target?.result) {
+        img.src = e.target.result as string;
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function switchToEditor() {
+    dropZone?.classList.add('hidden');
+    sampleStrip?.classList.add('hidden');
+    editorWorkspace?.classList.remove('hidden');
+    editorWorkspace?.classList.add('flex');
+    if (telemetryBox) telemetryBox.style.display = 'flex';
+    if (dimBadge) dimBadge.textContent = `${originalWidth} × ${originalHeight} px`;
+  }
+
+  function switchToUpload() {
+    editorWorkspace?.classList.add('hidden');
+    editorWorkspace?.classList.remove('flex');
+    dropZone?.classList.remove('hidden');
+    sampleStrip?.classList.remove('hidden');
+    if (telemetryBox) telemetryBox.style.display = 'none';
+    currentImage = null;
+    if (fileInput) fileInput.value = '';
+  }
+
+  function setupPresets() {
+    presetButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const name = btn.getAttribute('data-preset-btn') || 'auto';
+        applyPreset(name);
+        scheduleRender();
+      });
+    });
+  }
+
+  function applyPreset(name: string) {
+    const preset = presets[name] || presets.auto;
+    currentSettings = { ...preset };
+
+    // Update UI buttons
+    presetButtons.forEach(b => {
+      if (b.getAttribute('data-preset-btn') === name) {
+        b.className = 'preset-pill px-3 py-1.5 rounded-full text-[12px] font-medium border border-[#171717] bg-[#171717] text-white shadow-whisper transition-all cursor-pointer';
+      } else {
+        b.className = 'preset-pill px-3 py-1.5 rounded-full text-[12px] font-medium border border-[#ebebeb] bg-white text-[#4d4d4d] hover:border-[#171717] hover:text-[#171717] transition-all cursor-pointer';
+      }
+    });
+
+    // Update sliders
+    if (sliderAmount) sliderAmount.value = Math.round(preset.amount * 100).toString();
+    if (labelAmount) labelAmount.textContent = `${Math.round(preset.amount * 100)}%`;
+
+    if (sliderRadius) sliderRadius.value = preset.radius.toString();
+    if (labelRadius) labelRadius.textContent = `${preset.radius.toFixed(1)} px`;
+
+    if (sliderThreshold) sliderThreshold.value = preset.threshold.toString();
+    if (labelThreshold) labelThreshold.textContent = `${preset.threshold}`;
+  }
+
+  function setupSliders() {
+    sliderAmount?.addEventListener('input', (e) => {
+      const val = parseInt((e.target as HTMLInputElement).value, 10);
+      currentSettings.amount = val / 100;
+      if (labelAmount) labelAmount.textContent = `${val}%`;
+      scheduleRender();
+    });
+
+    sliderRadius?.addEventListener('input', (e) => {
+      const val = parseFloat((e.target as HTMLInputElement).value);
+      currentSettings.radius = val;
+      if (labelRadius) labelRadius.textContent = `${val.toFixed(1)} px`;
+      scheduleRender();
+    });
+
+    sliderThreshold?.addEventListener('input', (e) => {
+      const val = parseInt((e.target as HTMLInputElement).value, 10);
+      currentSettings.threshold = val;
+      if (labelThreshold) labelThreshold.textContent = `${val}`;
+      scheduleRender();
+    });
+
+    toggleAdjustmentsBtn?.addEventListener('click', () => {
+      adjustmentsPanel?.classList.toggle('hidden');
+    });
+  }
+
+  function scheduleRender() {
+    if (renderDebounceTimer) clearTimeout(renderDebounceTimer);
+    renderDebounceTimer = window.setTimeout(() => {
+      renderImage();
+    }, 40);
+  }
+
+  function renderImage() {
+    if (!currentImage || !canvasBefore || !canvasAfter) return;
+
+    const tStart = performance.now();
+    if (processingLoader) processingLoader.style.opacity = '1';
+
+    // Calculate display dimensions keeping aspect ratio (max 1600px preview for blazing 60fps)
+    const maxPreviewDim = 1600;
+    let previewW = originalWidth;
+    let previewH = originalHeight;
+
+    if (previewW > maxPreviewDim || previewH > maxPreviewDim) {
+      if (previewW > previewH) {
+        previewH = Math.round((previewH * maxPreviewDim) / previewW);
+        previewW = maxPreviewDim;
+      } else {
+        previewW = Math.round((previewW * maxPreviewDim) / previewH);
+        previewH = maxPreviewDim;
+      }
+    }
+
+    // Set canvas dimensions
+    canvasBefore.width = previewW;
+    canvasBefore.height = previewH;
+    canvasAfter.width = previewW;
+    canvasAfter.height = previewH;
+
+    const ctxBefore = canvasBefore.getContext('2d', { willReadFrequently: true });
+    const ctxAfter = canvasAfter.getContext('2d', { willReadFrequently: true });
+
+    if (!ctxBefore || !ctxAfter) return;
+
+    // Draw original onto Before Canvas
+    ctxBefore.drawImage(currentImage, 0, 0, previewW, previewH);
+
+    // Get pixel data
+    const imgData = ctxBefore.getImageData(0, 0, previewW, previewH);
+
+    // Run Unblur restoration algorithm
+    const restoredData = processUnblur(imgData, {
+      amount: currentSettings.amount,
+      radius: currentSettings.radius,
+      threshold: currentSettings.threshold,
+      mode: currentSettings.mode
+    });
+
+    // Run secondary micro-contrast sharpening pass
+    const crispData = applyMicroContrast(restoredData, 0.35);
+
+    // Draw sharpened onto After Canvas
+    ctxAfter.putImageData(crispData, 0, 0);
+
+    // If in Side-by-Side mode, sync the side canvases
+    if (isSideBySide && canvasSideBefore && canvasSideAfter) {
+      canvasSideBefore.width = previewW;
+      canvasSideBefore.height = previewH;
+      canvasSideAfter.width = previewW;
+      canvasSideAfter.height = previewH;
+
+      const sideCtxB = canvasSideBefore.getContext('2d');
+      const sideCtxA = canvasSideAfter.getContext('2d');
+      sideCtxB?.drawImage(canvasBefore, 0, 0);
+      sideCtxA?.drawImage(canvasAfter, 0, 0);
+    }
+
+    // Update Split Slider UI
+    updateSplitPosition(splitPercent);
+
+    const elapsed = Math.round(performance.now() - tStart);
+    if (timeBadge) timeBadge.textContent = `⚡ ${elapsed}ms`;
+    if (processingLoader) processingLoader.style.opacity = '0';
+  }
+
+  function setupSplitSlider() {
+    function onPointerMove(e: MouseEvent | TouchEvent) {
+      if (!isDragging || !splitContainer) return;
+      const rect = splitContainer.getBoundingClientRect();
+      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      const x = clientX - rect.left;
+      const pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
+      updateSplitPosition(pct);
+    }
+
+    function onPointerUp() {
+      isDragging = false;
+    }
+
+    splitContainer?.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      onPointerMove(e);
+    });
+
+    splitContainer?.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      onPointerMove(e);
+    }, { passive: true });
+
+    window.addEventListener('mousemove', onPointerMove);
+    window.addEventListener('touchmove', onPointerMove, { passive: true });
+    window.addEventListener('mouseup', onPointerUp);
+    window.addEventListener('touchend', onPointerUp);
+  }
+
+  function updateSplitPosition(pct: number) {
+    splitPercent = pct;
+    if (afterClip) afterClip.style.width = `${100 - pct}%`;
+    if (sliderLine) sliderLine.style.left = `${pct}%`;
+  }
+
+  function setupButtons() {
+    // Mode Toggles
+    modeSplitBtn?.addEventListener('click', () => {
+      isSideBySide = false;
+      modeSplitBtn.className = 'px-2.5 py-1 rounded-[4px] font-medium bg-[#171717] text-white transition-all cursor-pointer';
+      if (modeSideBtn) modeSideBtn.className = 'px-2.5 py-1 rounded-[4px] font-medium text-[#4d4d4d] hover:text-[#171717] transition-all cursor-pointer';
+      splitContainer?.classList.remove('hidden');
+      sideContainer?.classList.add('hidden');
+      sideContainer?.classList.remove('grid');
+    });
+
+    modeSideBtn?.addEventListener('click', () => {
+      isSideBySide = true;
+      modeSideBtn.className = 'px-2.5 py-1 rounded-[4px] font-medium bg-[#171717] text-white transition-all cursor-pointer';
+      if (modeSplitBtn) modeSplitBtn.className = 'px-2.5 py-1 rounded-[4px] font-medium text-[#4d4d4d] hover:text-[#171717] transition-all cursor-pointer';
+      splitContainer?.classList.add('hidden');
+      sideContainer?.classList.remove('hidden');
+      sideContainer?.classList.add('grid');
+      renderImage();
+    });
+
+    // Hold to compare
+    const showOriginal = () => {
+      if (afterClip) afterClip.style.opacity = '0';
+      if (sliderLine) sliderLine.style.opacity = '0';
+    };
+    const showEnhanced = () => {
+      if (afterClip) afterClip.style.opacity = '1';
+      if (sliderLine) sliderLine.style.opacity = '1';
+    };
+
+    holdCompareBtn?.addEventListener('mousedown', showOriginal);
+    holdCompareBtn?.addEventListener('mouseup', showEnhanced);
+    holdCompareBtn?.addEventListener('mouseleave', showEnhanced);
+    holdCompareBtn?.addEventListener('touchstart', showOriginal, { passive: true });
+    holdCompareBtn?.addEventListener('touchend', showEnhanced);
+
+    // Format selection
+    fmtButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const fmt = btn.getAttribute('data-fmt') as 'png' | 'jpeg' | 'webp';
+        selectedFormat = fmt;
+        fmtButtons.forEach(b => {
+          if (b === btn) {
+            b.className = 'fmt-btn px-2.5 py-1 rounded-full font-medium bg-white text-[#171717] shadow-whisper cursor-pointer';
+          } else {
+            b.className = 'fmt-btn px-2.5 py-1 rounded-full font-medium text-[#4d4d4d] hover:text-[#171717] cursor-pointer';
+          }
+        });
+      });
+    });
+
+    // Reset button
+    resetBtn?.addEventListener('click', switchToUpload);
+
+    // Copy to clipboard
+    copyBtn?.addEventListener('click', async () => {
+      if (!canvasAfter) return;
+      try {
+        canvasAfter.toBlob(async (blob) => {
+          if (!blob) return;
+          const item = new ClipboardItem({ 'image/png': blob });
+          await navigator.clipboard.write([item]);
+          if (copyText) copyText.textContent = 'Copied to Clipboard!';
+          setTimeout(() => {
+            if (copyText) copyText.textContent = 'Copy Image';
+          }, 2000);
+        }, 'image/png');
+      } catch (err) {
+        console.error('Failed to copy to clipboard', err);
+      }
+    });
+
+    // Download full resolution output
+    downloadBtn?.addEventListener('click', () => {
+      executeDownload();
+    });
+  }
+
+  function executeDownload() {
+    if (!currentImage) return;
+
+    // Process at 100% full original resolution
+    const fullCanvas = document.createElement('canvas');
+    fullCanvas.width = originalWidth;
+    fullCanvas.height = originalHeight;
+    const ctx = fullCanvas.getContext('2d', { willReadFrequently: true });
+    if (!ctx) return;
+
+    ctx.drawImage(currentImage, 0, 0, originalWidth, originalHeight);
+    const rawData = ctx.getImageData(0, 0, originalWidth, originalHeight);
+
+    // Apply algorithm at original resolution
+    const sharpenedData = processUnblur(rawData, {
+      amount: currentSettings.amount,
+      radius: currentSettings.radius,
+      threshold: currentSettings.threshold,
+      mode: currentSettings.mode
+    });
+    const finalData = applyMicroContrast(sharpenedData, 0.35);
+    ctx.putImageData(finalData, 0, 0);
+
+    // Trigger download with clean filename
+    const mimeType = selectedFormat === 'jpeg' ? 'image/jpeg' : selectedFormat === 'webp' ? 'image/webp' : 'image/png';
+    const quality = selectedFormat === 'jpeg' ? 0.95 : 0.92;
+    const ext = selectedFormat === 'jpeg' ? 'jpg' : selectedFormat;
+
+    fullCanvas.toBlob((blob) => {
+      if (!blob) return;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `removebluronline_${Date.now()}.${ext}`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, mimeType, quality);
+  }
+
+  // Auto-init on page load
+  document.addEventListener('DOMContentLoaded', init);
+</script>

@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #171717;
+  --color-canvas: #fafafa;
+  --color-canvas-elevated: #ffffff;
+  --color-hairline: #ebebeb;
+  --color-hairline-soft: #f2f2f2;
+  --color-body: #4d4d4d;
+  --color-mute: #8f8f8f;
+  --color-faint: #a1a1a1;
+  
+  --color-link: #0070f3;
+  --color-link-deep: #0761d1;
+  --color-link-soft: #d3e5ff;
+  
+  --color-error: #ee0000;
+  --color-warning: #f5a623;
+  --color-warning-soft: #ffefcf;
+  --color-violet: #7928ca;
+  --color-cyan: #50e3c2;
+  --color-pink: #ff0080;
+  --color-magenta: #eb367f;
+
+  --color-brand-cyan: #50e3c2;
+  --color-brand-blue: #007cf0;
+  --color-brand-violet: #7928ca;
+  --color-brand-magenta: #eb367f;
+  --color-brand-amber: #f9cb28;
+
+  --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill-category: 64px;
+  --radius-pill: 100px;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-hairline);
+  }
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Vercel mesh gradient as defined in DESIGN.md */
+.hero-mesh-gradient {
+  background: 
+    radial-gradient(circle at 50% -20%, rgba(80, 227, 194, 0.15), transparent 45%),
+    radial-gradient(circle at 15% 20%, rgba(0, 124, 240, 0.12), transparent 40%),
+    radial-gradient(circle at 85% 15%, rgba(121, 40, 202, 0.12), transparent 40%),
+    radial-gradient(circle at 70% 45%, rgba(235, 54, 127, 0.08), transparent 35%),
+    radial-gradient(circle at 30% 50%, rgba(249, 203, 40, 0.07), transparent 30%);
+}
+
+/* Whisper soft shadow defined in DESIGN.md: Level 1 */
+.shadow-whisper {
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.04), 0px 0px 0px 1px rgba(0, 0, 0, 0.02);
+}
+
+/* Floating shadow defined in DESIGN.md: Level 2 */
+.shadow-floating {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04), 0px 8px 16px -4px rgba(0, 0, 0, 0.06);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #e2e2e2;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #cfcfcf;
+}

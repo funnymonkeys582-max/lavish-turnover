@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <radialGradient id="face" cx="50%" cy="45%" r="40%">
+      <stop offset="0%" stop-color="#fbd5b5"/>
+      <stop offset="60%" stop-color="#e2a781"/>
+      <stop offset="100%" stop-color="#b6734c"/>
+    </radialGradient>
+    <linearGradient id="hair" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#451a03"/>
+      <stop offset="100%" stop-color="#1c1917"/>
+    </linearGradient>
+    <radialGradient id="eye" cx="40%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="60%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0c4a6e"/>
+    </radialGradient>
+    <!-- Soft blur filter simulating slight out-of-focus camera lens -->
+    <filter id="softBlur" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2.2" />
+    </filter>
+  </defs>
+
+  <!-- Background Studio Lighting -->
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="400" cy="280" r="280" fill="#38bdf8" opacity="0.08" filter="url(#softBlur)"/>
+
+  <!-- Portrait Subject with camera lens depth -->
+  <g filter="url(#softBlur)">
+    <!-- Shoulders & Coat -->
+    <path d="M 220 560 Q 400 480 580 560 L 620 600 L 180 600 Z" fill="#1e293b"/>
+    <path d="M 330 460 Q 400 490 470 460 L 490 600 L 310 600 Z" fill="#334155"/>
+    <path d="M 370 420 Q 400 460 430 420 L 420 520 L 380 520 Z" fill="#fbd5b5"/>
+
+    <!-- Hair Back -->
+    <ellipse cx="400" cy="270" rx="160" ry="190" fill="url(#hair)"/>
+
+    <!-- Head / Face -->
+    <path d="M 290 240 C 280 340 330 420 400 420 C 470 420 520 340 510 240 C 510 150 470 120 400 120 C 330 120 290 150 290 240 Z" fill="url(#face)"/>
+
+    <!-- Ears -->
+    <ellipse cx="280" cy="270" rx="15" ry="30" fill="#e2a781"/>
+    <ellipse cx="520" cy="270" rx="15" ry="30" fill="#e2a781"/>
+
+    <!-- Eyes -->
+    <!-- Left Eye -->
+    <ellipse cx="350" cy="245" rx="26" ry="14" fill="#ffffff"/>
+    <ellipse cx="352" cy="245" rx="13" ry="13" fill="url(#eye)"/>
+    <circle cx="352" cy="245" r="6" fill="#09090b"/>
+    <circle cx="356" cy="241" r="2.5" fill="#ffffff"/>
+    <path d="M 324 240 Q 350 226 376 242" stroke="#451a03" stroke-width="3" fill="none"/>
+    <path d="M 322 222 Q 350 212 378 226" stroke="#262626" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+
+    <!-- Right Eye -->
+    <ellipse cx="450" cy="245" rx="26" ry="14" fill="#ffffff"/>
+    <ellipse cx="448" cy="245" rx="13" ry="13" fill="url(#eye)"/>
+    <circle cx="448" cy="245" r="6" fill="#09090b"/>
+    <circle cx="452" cy="241" r="2.5" fill="#ffffff"/>
+    <path d="M 424 242 Q 450 226 476 240" stroke="#451a03" stroke-width="3" fill="none"/>
+    <path d="M 422 226 Q 450 212 478 222" stroke="#262626" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+
+    <!-- Nose -->
+    <path d="M 400 230 L 394 300 Q 400 310 406 300 Z" fill="#c28863" opacity="0.6"/>
+    <ellipse cx="390" cy="305" rx="5" ry="3" fill="#a16207" opacity="0.4"/>
+    <ellipse cx="410" cy="305" rx="5" ry="3" fill="#a16207" opacity="0.4"/>
+
+    <!-- Mouth & Lips -->
+    <path d="M 365 348 Q 400 340 435 348 Q 400 375 365 348 Z" fill="#e11d48" opacity="0.85"/>
+    <path d="M 370 348 Q 400 354 430 348" stroke="#881337" stroke-width="2" fill="none"/>
+
+    <!-- Hair Front / Bangs -->
+    <path d="M 285 210 Q 340 130 430 140 Q 515 160 515 220 C 490 170 420 160 380 180 C 330 200 300 180 285 210 Z" fill="url(#hair)"/>
+    <path d="M 290 190 Q 320 280 295 330 Q 280 280 290 190 Z" fill="url(#hair)"/>
+    <path d="M 510 190 Q 480 280 505 330 Q 520 280 510 190 Z" fill="url(#hair)"/>
+
+    <!-- Spectacle Frames / Glasses (fine detail for sharpening) -->
+    <rect x="318" y="228" width="66" height="36" rx="8" fill="none" stroke="#0f172a" stroke-width="3.5"/>
+    <rect x="416" y="228" width="66" height="36" rx="8" fill="none" stroke="#0f172a" stroke-width="3.5"/>
+    <path d="M 384 242 Q 400 238 416 242" fill="none" stroke="#0f172a" stroke-width="3.5"/>
+    <path d="M 318 240 L 290 236" stroke="#0f172a" stroke-width="3"/>
+    <path d="M 482 240 L 510 236" stroke="#0f172a" stroke-width="3"/>
+
+    <!-- Fine Texture Grid Lines for Unblur Resolution Testing -->
+    <g stroke="#ffffff" stroke-width="0.75" opacity="0.35">
+      <line x1="335" y1="235" x2="345" y2="231"/>
+      <line x1="433" y1="235" x2="443" y2="231"/>
+    </g>
+  </g>
+</svg>
